@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Voice Interview Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="background">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+  </div>
+
+  <div class="container">
+
+    <div class="header">
+      <div class="logo">🎙</div>
+
+      <div>
+        <h1>AI Voice Interview</h1>
+        <p>Practice AI/ML interviews with real-time voice conversation</p>
+      </div>
+    </div>
+
+    <div class="card">
+
+      <div class="status-row">
+        <div class="live-dot"></div>
+        <span id="status">Ready to start interview</span>
+      </div>
+
+      <button id="recordBtn" class="record-btn">
+        🎤 Start Recording
+      </button>
+
+      <button id="stopBtn" class="stop-btn" disabled>
+        ⏹ Stop Recording
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h2>AI Voice Response</h2>
+
+      <audio id="audioPlayer" controls></audio>
+
+    </div>
+
+    <div class="footer">
+      FastAPI • Whisper • Groq • ElevenLabs
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
