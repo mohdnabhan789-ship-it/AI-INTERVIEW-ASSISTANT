@@ -1,27 +1,25 @@
+\
+from gtts import gTTS
 import os
-from dotenv import load_dotenv
-from elevenlabs.client import ElevenLabs
-
-load_dotenv()
-
-client = ElevenLabs(
-    api_key=os.getenv("ELEVENLABS_API_KEY")
-)
-
-VOICE_ID = os.getenv("ELEVENLABS_VOICE_ID")
-
+import uuid
 
 def text_to_speech(text: str):
-    audio = client.text_to_speech.convert(
-        voice_id=VOICE_ID,
-        model_id="eleven_multilingual_v2",
-        text=text
+    output_path = os.path.join(
+        "temp",
+        f"output_{uuid.uuid4().hex}.mp3"
     )
 
-    output_path = "output.mp3"
+    os.makedirs("temp", exist_ok=True)
 
-    with open(output_path, "wb") as f:
-        for chunk in audio:
-            f.write(chunk)
+    tts = gTTS(
+        text=text,
+        lang="en",
+        slow=False
+    )
+
+    tts.save(output_path)
+
+    if not os.path.exists(output_path) or os.path.getsize(output_path) == 0:
+        raise Exception("TTS audio file was not created.")
 
     return output_path
